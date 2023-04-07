@@ -14,7 +14,9 @@ def test_data
   @ticket_5 = Ticket.create!(subject: 'Password', age: 1)
   @roger_email = EmployeeTicket.create!(employee: @employee_1, ticket: @ticket_1)
   @roger_virus = EmployeeTicket.create!(employee: @employee_1, ticket: @ticket_3)
+  @roger_mouse = EmployeeTicket.create!(employee: @employee_1, ticket: @ticket_4)
   @steve_mouse = EmployeeTicket.create!(employee: @employee_3, ticket: @ticket_4)
+  @steve_password = EmployeeTicket.create!(employee: @employee_3, ticket: @ticket_5)
   @ella_mouse = EmployeeTicket.create!(employee: @employee_5, ticket: @ticket_4)
 end
 
