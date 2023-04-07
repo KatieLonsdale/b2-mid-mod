@@ -2,3 +2,14 @@
 Name: <%= @employee.name %>
 Department: <%= @employee.department_worked_in %>
 </section>
+
+<section id="employee-tickets">
+Open tickets:
+<ul>
+<% @employee.tickets_by_age.each do |ticket| %>
+  <li><%= "Subject: #{ticket.subject}" %>
+  <%= "Age: #{ticket.age}" %></li>
+<% end %>
+</ul>
+<br>
+</section>
