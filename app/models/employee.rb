@@ -11,7 +11,8 @@ class Employee < ApplicationRecord
     tickets.order(age: :desc)
   end
 
-  def oldest_ticket
-    tickets_by_age.first
+  def oldest_ticket_subject
+    ticket = tickets_by_age.first
+    return ticket.subject unless ticket.nil?
   end
 end
