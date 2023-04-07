@@ -10,7 +10,7 @@ RSpec.describe Employee, type: :model do
     before :each do
       test_data
     end
-    describe "department_worked_in" do
+    describe "#department_worked_in" do
       it 'returns the name of the department they belong to' do
         expect(@employee_1.department_worked_in).to eq('IT')
         expect(@employee_2.department_worked_in).to eq('IT')
