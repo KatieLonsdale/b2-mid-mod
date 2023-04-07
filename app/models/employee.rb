@@ -10,4 +10,8 @@ class Employee < ApplicationRecord
   def tickets_by_age
     tickets.order(age: :desc)
   end
+
+  def oldest_ticket
+    tickets_by_age.first
+  end
 end
