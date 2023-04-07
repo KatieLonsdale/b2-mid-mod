@@ -40,8 +40,8 @@ RSpec.describe 'employees show page' do
         expect(page).to have_content("Subject: Mouse")
         expect(page).to have_content("Age: 5")
 
-        expect(@ticket_1.subject).to appear_before(@ticket_3.subject)
         expect(@ticket_3.subject).to appear_before(@ticket_4.subject)
+        expect(@ticket_4.subject).to appear_before(@ticket_1.subject)
 
         expect(page).to have_no_content("Subject: Monitor")
       end
