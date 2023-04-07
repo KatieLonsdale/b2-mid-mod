@@ -25,5 +25,12 @@ RSpec.describe Employee, type: :model do
         expect(@employee_2.tickets_by_age).to eq([])
       end
     end
+    describe "oldest_ticket" do
+      it 'returns the oldest ticket subject' do
+        expect(@employee_1.oldest_ticket).to eq(@ticket_3)
+        expect(@employee_3.oldest_ticket).to eq(@ticket_4)
+        expect(@employee_2.oldest_ticket).to eq(nil)
+      end
+    end
   end
 end
