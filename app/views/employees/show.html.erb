@@ -1,15 +1,22 @@
 <section id="employee-info">
-Name: <%= @employee.name %>
+Name: <%= @employee.name %><br>
 Department: <%= @employee.department_worked_in %>
 </section>
-
-<section id="employee-tickets">
-Open tickets:
-<ul>
-<% @employee.tickets_by_age.each do |ticket| %>
-  <li><%= "Subject: #{ticket.subject}" %>
-  <%= "Age: #{ticket.age}" %></li>
-<% end %>
-</ul>
 <br>
+<section id="employee-tickets">
+  <% unless @employee.tickets.empty? %>
+    Open tickets:
+    <ul>
+    <% @employee.tickets_by_age.each do |ticket| %>
+      <li><%= "Subject: #{ticket.subject}" %>
+      <%= "Age: #{ticket.age}" %></li>
+    <% end %>
+    </ul>
+  <% end %>
+</section>
+<br>
+<section id="employee-oldest-ticket">
+  <% unless @employee.tickets.empty? %>
+    Oldest Ticket: <%= @employee.oldest_ticket_subject %>
+  <% end %>
 </section>
