@@ -30,11 +30,35 @@ RSpec.describe 'employees show page' do
       end
     end
 
-    xit "shows me all of their tickets from oldest to youngest" do
+    it "shows me all of their tickets from oldest to youngest" do
+      visit "/employees/#{@employee_1.id}"
+      within "#employee-tickets" do
+        expect(page).to have_content("Subject: Email")
+        expect(page).to have_content("Age: 2")
+        expect(page).to have_content("Subject: Virus")
+        expect(page).to have_content("Age: 6")
+        expect(page).to have_content("Subject: Mouse")
+        expect(page).to have_content("Age: 5")
 
+        expect(@ticket_1.subject).to appear_before(@ticket_3.subject)
+        expect(@ticket_3.subject).to appear_before(@ticket_4.subject)
+
+        expect(page).to have_no_content("Subject: Monitor")
+      end
+
+      visit "/employees/#{@employee_4.id}"
+      within "#employee-tickets" do
+        expect(page).to have_no_content("Subject: Email")
+        expect(page).to have_no_content("Age: 2")
+        expect(page).to have_no_content("Subject: Virus")
+        expect(page).to have_no_content("Age: 6")
+        expect(page).to have_no_content("Subject: Mouse")
+        expect(page).to have_no_content("Age: 5")
+      end
     end
 
     xit "shows me their oldest ticket separately" do
+
 
     end
   end

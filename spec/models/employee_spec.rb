@@ -18,11 +18,11 @@ RSpec.describe Employee, type: :model do
         expect(@employee_4.department_worked_in).to eq('Finance')
       end
     end
-    describe "tickets_open" do
-      it 'returns an array of tickets associated with the employee' do
-        expect(@employee_1.tickets_open).to eq([@ticket_1, @ticket_3, @ticket_4])
-        expect(@employee_3.tickets_open).to eq([@ticket_4, @ticket_5])
-        expect(@employee_2.tickets_open).to eq([])
+    describe "tickets_by_age" do
+      it 'returns an array of tickets associated with the employee from oldest to youngest age' do
+        expect(@employee_1.tickets_by_age).to eq([@ticket_3, @ticket_4, @ticket_1])
+        expect(@employee_3.tickets_by_age).to eq([@ticket_4, @ticket_5])
+        expect(@employee_2.tickets_by_age).to eq([])
       end
     end
   end
