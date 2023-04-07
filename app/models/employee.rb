@@ -7,7 +7,7 @@ class Employee < ApplicationRecord
     department.name
   end
 
-  def tickets_open
-    tickets
+  def tickets_by_age
+    tickets.order(age: :desc)
   end
 end
