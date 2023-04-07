@@ -33,20 +33,20 @@ RSpec.describe 'employees show page' do
     it "shows me all of their tickets from oldest to youngest" do
       visit "/employees/#{@employee_1.id}"
       within "#employee-tickets" do
-        expect(page).to have_content("Subject: Email")
-        expect(page).to have_content("Age: 2")
-        expect(page).to have_content("Subject: Virus")
-        expect(page).to have_content("Age: 6")
-        expect(page).to have_content("Subject: Mouse")
-        expect(page).to have_content("Age: 5")
-
-        expect(@ticket_3.subject).to appear_before(@ticket_4.subject)
-        expect(@ticket_4.subject).to appear_before(@ticket_1.subject)
-
-        expect(page).to have_no_content("Subject: Monitor")
-      end
-
-      visit "/employees/#{@employee_4.id}"
+      expect(page).to have_content("Subject: Email")
+      expect(page).to have_content("Age: 2")
+      expect(page).to have_content("Subject: Virus")
+      expect(page).to have_content("Age: 6")
+      expect(page).to have_content("Subject: Mouse")
+      expect(page).to have_content("Age: 5")
+      
+      expect(@ticket_3.subject).to appear_before(@ticket_4.subject)
+      expect(@ticket_4.subject).to appear_before(@ticket_1.subject)
+      
+      expect(page).to have_no_content("Subject: Monitor")
+    end
+    
+    visit "/employees/#{@employee_4.id}"
       within "#employee-tickets" do
         expect(page).to have_no_content("Subject: Email")
         expect(page).to have_no_content("Age: 2")
@@ -54,12 +54,20 @@ RSpec.describe 'employees show page' do
         expect(page).to have_no_content("Age: 6")
         expect(page).to have_no_content("Subject: Mouse")
         expect(page).to have_no_content("Age: 5")
+        expect(page).to have_no_content("Open tickets:")
       end
     end
 
-    xit "shows me their oldest ticket separately" do
+    it "shows me their oldest ticket separately" do
+      visit "/employees/#{@employee_1.id}"
+      within "#employee-oldest-ticket" do
+        expect(page).to have_content("Oldest Ticket: Virus")
+      end
 
-
+      visit "/employees/#{@employee_4.id}"
+      within "#employee-oldest-ticket" do
+        expect(page).to have_no_content("Oldest Ticket:")
+      end
     end
   end
 end
