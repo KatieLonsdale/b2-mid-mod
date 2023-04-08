@@ -78,12 +78,32 @@ RSpec.describe 'employees show page' do
       end
     end
 
-  
-      # and I see a form to add a ticket to this department.
-      # When I fill in the form with the id of a ticket that already exists in the database
-      # and I click submit
-      # Then I am redirected back to that employees show page
-      # and I see the ticket's subject now listed.
-      # (you do not have to test for sad path, for example if the id does not match an existing ticket.)
+    it "has a form to add a ticket by id to the employee" do
+      visit "/employees/#{@employee_1.id}"
+      within "#add-ticket" do
+        expect(page).to have_content("Add Ticket:")
+        fill_in(:ticket_id, with: "#{@ticket_2.id}")
+        click_button("Add")
+      end
+    end
+
+    it "returns to the employee show page when submitted" do
+      visit "/employees/#{@employee_1.id}"
+      within "#add-ticket" do
+        fill_in(:ticket_id, with: "#{@ticket_2.id}")
+        click_button("Add")
+      end
+      expect(current_path).to eq("/employees/#{@employee_1.id}")
+    end
+
+    it "and the ticket's subject is now listed" do
+      visit "/employees/#{@employee_1.id}"
+      expect(page).to have_no_content("Subject: Monitor")
+      within "#add-ticket" do
+        fill_in(:ticket_id, with: "#{@ticket_2.id}")
+        click_button("Add")
+      end
+      expect(page).to have_content("Subject: Monitor")
+    end
   end
 end
