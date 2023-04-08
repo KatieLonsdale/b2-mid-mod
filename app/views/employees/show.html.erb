@@ -20,3 +20,13 @@ Department: <%= @employee.department_worked_in %>
     Oldest Ticket: <%= @employee.oldest_ticket_subject %>
   <% end %>
 </section>
+<br>
+<section id="add-ticket">
+  Add Ticket:
+  <%= form_with url: "/employee_tickets/new", method: :post, local: true do |form|%>
+  <%= form.label :ticket_id, "Enter ticket ID:" %>
+  <%= form.text_field :ticket_id %>
+  <%= form.hidden_field :employee_id, value: @employee.id %>
+  <%= form.submit 'Add' %>
+  <% end %>
+</section>
